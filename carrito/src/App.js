@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import { Grid, Button, TextField, Typography } from "@mui/material";
+import { Provider } from "react-redux";
+import ShoppingCart from "./components/ShoppingCart";
+import store from "./store";
+import { useFetch } from "./hooks/useFetch";
+import { Grid } from '@mui/material';
 
 function App() {
+
+  const dataTurn = useFetch(`https://ait-tesapi.herokuapp.com/products`)
+  console.log(dataTurn)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Grid>Edit <code>src/App.js</code> and save to reload.</Grid> 
-          
-        
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Grid sx={{ m: '1.5rem' }}>
+        <ShoppingCart />
+      </Grid>
+    </Provider>
   );
 }
 
