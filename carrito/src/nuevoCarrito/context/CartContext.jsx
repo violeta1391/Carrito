@@ -30,12 +30,12 @@ export const CartProvider = ({ children }) => {
 
     const addItemToCart = (product) => {
         const inCart = cartItems.find(
-            (productInCart) => productInCart.id = product.id
+            (productInCart) => productInCart._id === product._id
         )
         if (inCart) {
             setCartItems(
                 cartItems.map((productInCart) => {
-                    if (productInCart.id = product.id) {
+                    if (productInCart._id === product._id) {
                         return { ...inCart, amount: inCart.amount + 1 }
                     } else return productInCart;
                 })
@@ -48,16 +48,16 @@ export const CartProvider = ({ children }) => {
 
     const deletItemToCart = (product) => {
         const inCart = cartItems.find(
-            (productInCart) => productInCart.id === product.id
+            (productInCart) => productInCart._id === product._id
         )
         if (inCart.amount === 1) {
             setCartItems(
-                cartItems.filter((productInCart) => productInCart.id !== product.id)
+                cartItems.filter((productInCart) => productInCart._id !== product._id)
             )
         } else {
             setCartItems(
                 cartItems.map((productInCart) => {
-                    if (productInCart.id === product.id) {
+                    if (productInCart._id === product._id) {
                         return { ...inCart, amount: inCart.amount - 1 }
                     } else return productInCart;
                 })
@@ -65,20 +65,23 @@ export const CartProvider = ({ children }) => {
         }
     }
 
-    //const productosEnLocalStorage = localStorage.getItem('cartProducts')
+    const productosEnLocalStorage = localStorage.getItem('cartProducts')
 
-    /*
     const postProduct = async (productosEnLocalStorage) => {
-    
-      const { name, img, price } = product;
-  
-      await axios.post("http://localhost:4000/products-cart", { name, img, price });      
+
+        const response = await axios.post("https://ait-tesapi.herokuapp.com/sales/", productosEnLocalStorage);       
+
+        if (response.status === 201 ) {
+            localStorage.setItem('cartProducts', '')
+            setCartItems([])
+            alert('creado')
+        }
     };
-    */
+
 
     return (
         <CartContext.Provider
-            value={{ cartItems, products, addItemToCart, deletItemToCart }}
+            value={{ cartItems, products, addItemToCart, deletItemToCart, postProduct }}
         >
             {children}
         </CartContext.Provider>

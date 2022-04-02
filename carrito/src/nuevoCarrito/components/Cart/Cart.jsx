@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ItemCart } from "./ItemCart";
 import CartContext from "../../context/CartContext";
 import { styled } from '@mui/material/styles';
+import { Card, Button, Grid, Typography, CardHeader, CardMedia, CardContent } from "@mui/material";
 
 
 
@@ -10,14 +11,14 @@ const Cart = () => {
     const [cartOpen, setCartOpen] = useState(false);
     const [productsLength, setProductsLength] = useState(0);
 
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, postProduct } = useContext(CartContext);
 
     useEffect(() => {
         setProductsLength(
             cartItems?.reduce((previous, current) => previous + current.amount, 0)
         );
-    }, [cartItems]);  
-   
+    }, [cartItems]);
+
     const total = cartItems?.reduce(
         (previous, current) => previous + current.amount * current.price,
         0
@@ -28,11 +29,11 @@ const Cart = () => {
     return (
         <div>
             <div
-                onClick={() => setCartOpen(!cartOpen)}               
+                onClick={() => setCartOpen(!cartOpen)}
             >
                 <div>
                     {!cartOpen ? (
-                        <svg                            
+                        <svg
                             width={"35px"}
                             viewBox="0 0 30 27"
                             fill="none"
@@ -86,8 +87,12 @@ const Cart = () => {
                     )}
 
                     <h2>Total: ${total}</h2>
+
+
                 </div>
             )}
+
+            <Button onClick={() => postProduct()}> aceptar </Button>
         </div>
     );
 };

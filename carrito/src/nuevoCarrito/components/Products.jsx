@@ -108,14 +108,10 @@ const Products = () => {
                                         ${product.price}
                                     </Typography>
                                 </CardContent>
-                                {product.stock !== 0 ? (
-
+                                { product.stock !== 0 ? (
                                     <BootstrapButton variant="contained" size="large" onClick={() => addItemToCart(product)}>Agregar</BootstrapButton>
-
                                 ) : (
-
                                     <BootstrapButtonDisabled variant="contained" size="large">Sin Stock</BootstrapButtonDisabled>
-
                                 )}
                             </Card>
                         </Grid>
