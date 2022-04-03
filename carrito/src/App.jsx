@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "./components/Home";
+import Home from "./Pages/Home";
 import { CartProvider } from "./context/CartContext";
 import { Grid } from '@mui/material';
 
@@ -11,7 +11,7 @@ const App = () => {
 
     return (
         <CartProvider>
-            <Grid sx={{ m: '1.5rem' }}>
+            <Grid >
                 <Home />
             </Grid>
         </CartProvider>

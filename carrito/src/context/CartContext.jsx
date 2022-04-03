@@ -4,6 +4,7 @@ import axios from "axios";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+    
 
     const [products, setProducts] = useState([]);
 
@@ -67,9 +68,9 @@ export const CartProvider = ({ children }) => {
 
     const postProduct = async (productosEnLocalStorage) => {
 
-        const response = await axios.post("https://ait-tesapi.herokuapp.com/sales/", productosEnLocalStorage);       
+        const response = await axios.post("https://ait-tesapi.herokuapp.com/sales/", productosEnLocalStorage);
 
-        if (response.status === 201 ) {
+        if (response.status === 201) {
             localStorage.setItem('cartProducts', '')
             setCartItems([])
             alert('creado')
