@@ -65,8 +65,6 @@ export const CartProvider = ({ children }) => {
         }
     }
 
-    const productosEnLocalStorage = localStorage.getItem('cartProducts')
-
     const postProduct = async (productosEnLocalStorage) => {
 
         const response = await axios.post("https://ait-tesapi.herokuapp.com/sales/", productosEnLocalStorage);       

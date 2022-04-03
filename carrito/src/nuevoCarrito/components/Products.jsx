@@ -80,7 +80,7 @@ const BootstrapButtonDisabled = styled(Button)({
 })
 
 const Products = () => {
-    const { addItemToCart, products } = useContext(CartContext);
+    const { addItemToCart, products,  } = useContext(CartContext);
 
     return (
         <>
@@ -105,10 +105,10 @@ const Products = () => {
                                 </Typography>
                                 <CardContent>
                                     <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                                        ${product.price}
+                                        {product.price}
                                     </Typography>
                                 </CardContent>
-                                { product.stock !== 0 ? (
+                                { product.stock !== 0  ? (
                                     <BootstrapButton variant="contained" size="large" onClick={() => addItemToCart(product)}>Agregar</BootstrapButton>
                                 ) : (
                                     <BootstrapButtonDisabled variant="contained" size="large">Sin Stock</BootstrapButtonDisabled>

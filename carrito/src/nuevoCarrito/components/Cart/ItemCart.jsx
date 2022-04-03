@@ -6,6 +6,8 @@ export const ItemCart = ({ item }) => {
 
     const id = item;
 
+
+
     return (
         <div>
             <img src={item.img} alt={item.name} />
@@ -16,14 +18,11 @@ export const ItemCart = ({ item }) => {
                         <button onClick={() => addItemToCart(item)}>
                             AGREGAR
                         </button>
+                        <div>{item.amount}</div>
                         <button onClick={() => deletItemToCart(item)}>
                             SACAR
                         </button>
                     </div>
-                </div>
-                <div>
-                    <div>{item.amount}</div>
-                    <p>Total: ${item.amount * item.price}</p>
                 </div>
             </div>
         </div>

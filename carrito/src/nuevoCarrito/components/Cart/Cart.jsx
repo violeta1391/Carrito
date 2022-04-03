@@ -5,12 +5,9 @@ import { styled } from '@mui/material/styles';
 import { Card, Button, Grid, Typography, CardHeader, CardMedia, CardContent } from "@mui/material";
 
 
-
-
 const Cart = () => {
     const [cartOpen, setCartOpen] = useState(false);
     const [productsLength, setProductsLength] = useState(0);
-
     const { cartItems, postProduct } = useContext(CartContext);
 
     useEffect(() => {
@@ -19,13 +16,11 @@ const Cart = () => {
         );
     }, [cartItems]);
 
-    const total = cartItems?.reduce(
-        (previous, current) => previous + current.amount * current.price,
-        0
-    );
-
-    console.log(total)
-
+    const total = cartItems?.reduce(function (previous, current) {
+        const precio = parseFloat(current.price.slice(1))
+        return previous + current.amount * precio;
+    }, 0);  
+    
     return (
         <div>
             <div
@@ -85,10 +80,7 @@ const Cart = () => {
                             ))}
                         </div>
                     )}
-
-                    <h2>Total: ${total}</h2>
-
-
+                    <h2>Total: ${total.toFixed(2)}</h2>
                 </div>
             )}
 
