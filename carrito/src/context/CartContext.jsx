@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from "react";
+import swal from 'sweetalert';
 import axios from "axios";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    
 
     const [products, setProducts] = useState([]);
 
@@ -44,7 +44,6 @@ export const CartProvider = ({ children }) => {
         } else {
             setCartItems([...cartItems, { ...product, amount: 1 }])
         }
-
     }
 
     const deletItemToCart = (product) => {
@@ -68,15 +67,30 @@ export const CartProvider = ({ children }) => {
 
     const postProduct = async (productosEnLocalStorage) => {
 
-        const response = await axios.post("https://ait-tesapi.herokuapp.com/sales/", productosEnLocalStorage);
+        try {
+            const response = await axios.post("https://ait-tesapi.herokuapp.com/sales/", productosEnLocalStorage);
 
-        if (response.status === 201) {
             localStorage.setItem('cartProducts', '')
             setCartItems([])
-            alert('creado')
+            swal({
+                title: "Gracias!!",
+                icon: 'success',
+                text: "Tu compra se realizó correctamente",
+                buttons: {
+                    aceptar: "Aceptar"
+                },
+            })
+        } catch (error) {
+            swal({
+                title: "Ha ocurrido un error durante el proceso de compra",
+                text: "Por favor inténtalo nuevamente",
+                buttons: {
+                    aceptar: "Aceptar"                    
+                },
+                icon: 'error'
+            })
         }
     };
-
 
     return (
         <CartContext.Provider

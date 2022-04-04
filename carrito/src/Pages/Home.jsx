@@ -11,11 +11,13 @@ const Home = () => {
                 <Typography variant="h2" >Main Dishes</Typography>
             </Box>
             <Cart />
-            <Card sx={{ padding: '2rem 1rem' }} style={{ backgroundColor: "#f5f5f5" }}>
-                <Grid container spacing={3} sx={{ display: 'row', justifyContent: 'center', padding: '.5rem' }}>
-                    <Products />
+            <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Grid sx={{ maxWidth: '1200px' }}>
+                    <Card sx={{ padding: '2rem' }} style={{ backgroundColor: "#f5f5f5" }}>
+                        <Products />
+                    </Card>
                 </Grid>
-            </Card>
+            </Grid>
         </Grid>
     );
 };

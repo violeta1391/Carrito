@@ -16,16 +16,16 @@ export const ItemCart = ({ item }) => {
 
     return (
         <Grid item xs={12} md={2}>
-            <Card sx={{ p: '1rem', textAlign: 'center', display: 'row', justifyContent: 'center'}}>
-                <CardContent>
-                    <Typography variant="p" color="secondary" sx={{ pb: '1rem', fontWeight: "bold" }}>
+            <Card sx={{textAlign: 'center', display: 'row', justifyContent: 'center', height:"300px"}}>
+                <CardContent sx={{ height:"30px"}}>
+                    <Typography variant="p" color="secondary" sx={{ fontWeight: "bold" }}>
                         {item.name}
                     </Typography>
                 </CardContent>
                 <CardMedia
                     component="img"
-                    height="150"
-                    src={item.img}
+                    height="150px"
+                    src={item.image}
                     alt={item.name}
                 />
                 <CardContent>
@@ -39,7 +39,7 @@ export const ItemCart = ({ item }) => {
                             },
                         }}
                     >
-                        <ButtonGroup color="secondary" aria-label="medium secondary button group">
+                        <ButtonGroup color="secondary" aria-label="medium secondary button group" sx={{ pb: '1rem'}}>
                             {buttons}
                         </ButtonGroup>
                     </Box>

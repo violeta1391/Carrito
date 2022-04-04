@@ -29,7 +29,7 @@ const Cart = () => {
             >
                 <Box>
                     {!cartOpen ? (
-                        <ShoppingCartIcon sx={{ color: "rgb(255,167,30)", fontSize: 40, cursor: 'pointer'}}></ShoppingCartIcon>
+                        <ShoppingCartIcon color="secondary" sx={{ fontSize: 40, cursor: 'pointer', pt: '1rem' }}></ShoppingCartIcon>
                     ) : (
                         <CancelIcon sx={{ color: "rgb(255,167,30)", fontSize: 40, cursor: 'pointer' }}></CancelIcon>
                     )}
@@ -55,8 +55,9 @@ const Cart = () => {
                             ))}
                         </Grid>
                     )}
-                    <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: '3rem'}}>
-                        <Card sx={{ p: '2rem' }}>
+                    <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: '3rem' }}>
+                        {productsLength > 0 ? (
+                            <Card sx={{ p: '2rem' }}>
                             <Grid container>
                                 <Grid item xs={12} md={6}>
                                     <Typography variant="h5" color='secondary' sx={{ fontWeight: "bold", paddingRight: '2rem', }}>
@@ -67,8 +68,11 @@ const Cart = () => {
                                     <BootstrapButton onClick={() => postProduct()}>Comprar</BootstrapButton>
                                 </Grid>
                             </Grid>
-
                         </Card>
+                        ) : (
+                            <></>
+                        )}
+                        
                     </Grid>
                 </div>
             )}

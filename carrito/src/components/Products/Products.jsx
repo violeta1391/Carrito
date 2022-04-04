@@ -4,23 +4,24 @@ import { Card, Grid, Typography, CardMedia, CardContent } from "@mui/material";
 import { BootstrapButton, BootstrapButtonDisabled } from '../Buttons/Buttons'
 
 const Products = () => {
-    const { addItemToCart, products,  } = useContext(CartContext);
+    const { addItemToCart, products, } = useContext(CartContext);
 
     return (
         <>
-            <Grid container spacing={3} sx={{ display: 'row', justifyContent: 'center', padding: '.5rem' }}>
+            <Grid container spacing={4} sx={{ display: 'row', justifyContent: 'center', padding: '.5rem' }}>
                 {products &&
                     products.map((product, i) => (
                         <Grid item xs={12} md={4}>
-                            <Card sx={{ p: '1rem 0rem 1rem 0rem', textAlign: 'center', display: 'row', justifyContent: 'center' }} key={i}>
+                            <Card sx={{ pb: '1rem', textAlign: 'center', display: 'row', justifyContent: 'center' }} key={i}>
                                 <CardMedia
                                     component="img"
-                                    height="194"
-                                    src={product.img}
+                                    height="294"
+                                    image={product.image}
                                     alt={product.name}
                                 />
+
                                 <CardContent>
-                                    <Typography variant="h5" color="rgb(255,167,30)" sx={{ pb: '1rem', fontWeight: "bold" }}>
+                                    <Typography variant="h5" color="rgb(255,167,30)" sx={{ p: '1rem', fontWeight: "bold" }}>
                                         {product.name}
                                     </Typography>
                                 </CardContent>
@@ -32,11 +33,13 @@ const Products = () => {
                                         {product.price}
                                     </Typography>
                                 </CardContent>
-                                { product.stock !== 0  ? (
-                                    <BootstrapButton variant="contained" size="large" onClick={() => addItemToCart(product)}>Agregar</BootstrapButton>
-                                ) : (
-                                    <BootstrapButtonDisabled variant="contained" size="large">Sin Stock</BootstrapButtonDisabled>
-                                )}
+                                <CardContent sx={{ pb: '1rem' }}>
+                                    {product.stock !== 0 ? (
+                                        <BootstrapButton variant="contained" size="large" onClick={() => addItemToCart(product)}>Agregar</BootstrapButton>
+                                    ) : (
+                                        <BootstrapButtonDisabled variant="contained" size="large">Sin Stock</BootstrapButtonDisabled>
+                                    )}
+                                </CardContent>
                             </Card>
                         </Grid>
                     ))}
