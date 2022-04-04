@@ -9,21 +9,21 @@ const validate = values => {
     const errors = {};
 
     if (!values.firstName) {
-        errors.firstName = 'Required';
+        errors.firstName = 'Este dato es obligatorio';
     } else if (values.firstName.length > 15) {
-        errors.firstName = 'Must be 15 characters or less';
+        errors.firstName = 'El nombre debe tener menos de 15 letras';
     }
 
     if (!values.lastName) {
-        errors.lastName = 'Required';
-    } else if (values.lastName.length > 20) {
-        errors.lastName = 'Must be 20 characters or less';
+        errors.lastName = 'Este dato es obligatorio';
+    } else if (values.lastName.length > 15) {
+        errors.lastName = 'El apellido debe tener menos de 15 letras';
     }
 
     if (!values.email) {
-        errors.email = 'Required';
+        errors.email = 'Este dato es obligatorio';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
+        errors.email = 'El formato del mail es incorrecto';
     }
 
     return errors;
@@ -70,7 +70,7 @@ export const UserForm = () => {
                                     />
                                     {formik.touched.firstName && formik.errors.firstName ? (
                                         <Typography sx={{ p: '1rem' }} color="error">
-                                            Este dato es obligatorio
+                                            {formik.errors.firstName }
                                         </Typography>
                                     ) : null}
                                 </Grid>
@@ -87,7 +87,7 @@ export const UserForm = () => {
                                     />
                                     {formik.touched.lastName && formik.errors.lastName ? (
                                         <Typography sx={{ p: '1rem' }} color="error">
-                                            Este dato es obligatorio
+                                            {formik.errors.lastName }
                                         </Typography>
                                     ) : null}
 
@@ -105,7 +105,7 @@ export const UserForm = () => {
                                     />
                                     {formik.touched.email && formik.errors.email ? (
                                         <Typography sx={{ p: '1rem' }} color="error">
-                                            Este dato es obligatorio
+                                            {formik.errors.email }
                                         </Typography>
                                     ) : null}
                                 </Grid>
