@@ -3,7 +3,6 @@ import Products from "../components/Products/Products";
 import { Card, Grid, Typography, Box } from "@mui/material";
 import Cart from "../components/Cart/Cart";
 
-
 const Home = () => {
     return (
         <Grid style={{ backgroundColor: "#f5f5f5" }}>

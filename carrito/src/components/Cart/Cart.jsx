@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { ItemCart } from "./ItemCart";
 import CartContext from "../../context/CartContext";
-import { Card, Box, Grid, Typography, CardHeader, CardMedia, CardContent } from "@mui/material";
+import { Card, Box, Grid, Typography} from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { BootstrapButton } from '../Buttons/Buttons'
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const [cartOpen, setCartOpen] = useState(false);
@@ -58,21 +59,24 @@ const Cart = () => {
                     <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: '3rem' }}>
                         {productsLength > 0 ? (
                             <Card sx={{ p: '2rem' }}>
-                            <Grid container>
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" color='secondary' sx={{ fontWeight: "bold", paddingRight: '2rem', }}>
-                                        Total: ${total.toFixed(2)}
-                                    </Typography>
+                                <Grid container>
+                                    <Grid item xs={12} md={6}>
+                                        <Typography variant="h5" color='secondary' sx={{ fontWeight: "bold", paddingRight: '2rem', }}>
+                                            Total: ${total.toFixed(2)}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <Link
+                                            to={"/userForm"}
+                                            style={{ textDecoration: "none", color: "white" }}
+                                        > <BootstrapButton>Comprar</BootstrapButton>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <BootstrapButton onClick={() => postProduct()}>Comprar</BootstrapButton>
-                                </Grid>
-                            </Grid>
-                        </Card>
+                            </Card>
                         ) : (
                             <></>
                         )}
-                        
                     </Grid>
                 </div>
             )}

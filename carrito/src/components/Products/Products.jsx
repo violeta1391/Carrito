@@ -19,7 +19,6 @@ const Products = () => {
                                     image={product.image}
                                     alt={product.name}
                                 />
-
                                 <CardContent>
                                     <Typography variant="h5" color="rgb(255,167,30)" sx={{ p: '1rem', fontWeight: "bold" }}>
                                         {product.name}

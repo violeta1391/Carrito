@@ -1,21 +1,17 @@
 import React from "react";
-import Home from "./Pages/Home";
+import { AppRouter } from "./routers/AppRouter";
 import { CartProvider } from "./context/CartContext";
 import { Grid } from '@mui/material';
 
 const App = () => {
-    /* Envolvemos la home con el provider del context */
-
-    const parsePrice = parseInt("$10")
-    console.log(parsePrice)
-
     return (
         <CartProvider>
             <Grid >
-                <Home />
+                <AppRouter />
             </Grid>
         </CartProvider>
     );
 };
 
 export default App;
+

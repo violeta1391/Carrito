@@ -65,8 +65,19 @@ export const CartProvider = ({ children }) => {
         }
     }
 
-    const postProduct = async (productosEnLocalStorage) => {
+    const addDataLocalStorage = (data) => {
 
+        const productosDatos = {
+            produtos: localStorage.getItem('cartProducts'),
+            datos: data
+        }
+        const productosConDatos = JSON.stringify(productosDatos)
+
+        localStorage.setItem('cartProducts', productosConDatos)
+        postProduct()
+    }
+
+    const postProduct = async (productosEnLocalStorage) => {
         try {
             const response = await axios.post("https://ait-tesapi.herokuapp.com/sales/", productosEnLocalStorage);
 
@@ -79,13 +90,16 @@ export const CartProvider = ({ children }) => {
                 buttons: {
                     aceptar: "Aceptar"
                 },
-            })
+            }).then(function() {
+                window.location.href = "/home";
+            });            
+            console.log(response)
         } catch (error) {
             swal({
                 title: "Ha ocurrido un error durante el proceso de compra",
                 text: "Por favor inténtalo nuevamente",
                 buttons: {
-                    aceptar: "Aceptar"                    
+                    aceptar: "Aceptar"
                 },
                 icon: 'error'
             })
@@ -94,7 +108,7 @@ export const CartProvider = ({ children }) => {
 
     return (
         <CartContext.Provider
-            value={{ cartItems, products, addItemToCart, deletItemToCart, postProduct }}
+            value={{ cartItems, products, addItemToCart, deletItemToCart, postProduct, addDataLocalStorage }}
         >
             {children}
         </CartContext.Provider>
